@@ -10,11 +10,12 @@ class LeaderBoard extends Component {
         console.log('users keys', Object.keys(this.props.users))
         return (
             <div style={{ width: '100%' }}>
-            
+                 <Nav authUser={this.props.authUser} users={this.props.users} />
+
                 <Container fluid style={{ margin: '0px', padding: '0px' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', background: '#EEFF86', border: '5px solid blue', borderRadius: '5px', width: '100%' }}>
                         <div style={{ display: 'inline', flex: '0.96' }}><h3>Would You Rather ...?</h3></div>
-                        <div style={{ display: 'inline', float: 'inline-end', border: '1px dashed blue', backgroundColor: 'white' }}><Link className='button--primary btn btn-primary-outline' to='/login' >logout</Link></div>
+                        <div style={{ display: 'inline', float: 'inline-end', border: '1px dashed blue', backgroundColor: 'white' }}><Link className='button--primary btn btn-primary' to='/login' >logout</Link></div>
                     </div>
                     <Row>
                         <Col>
@@ -38,6 +39,7 @@ class LeaderBoard extends Component {
 }
 function stateMapToProps(state, props) {
     return {
+        authUser: state.authUser,
         users: state.users,
         questions: state.questions
     }

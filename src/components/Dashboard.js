@@ -6,6 +6,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Route, Redirect } from 'react-router-dom'
 //import {} from '../actions/authUser'
 import LeaderBoard from './LeaderBoard'
+import QuestionList from './QuestionList'
+import '../index.css'
 class Dashboard extends Component {
     state = { login: '' }
     isLogedIn = () => {
@@ -50,6 +52,9 @@ class Dashboard extends Component {
 
                         </Col>
                     </Row>
+                    <div>
+                        <QuestionList/>
+                    </div>
                 </Container>
 
             </div>

@@ -28,7 +28,16 @@
   color: #61dafb;
 }
 
-
+.nav-link{
+  width:50%;
+  background-color: yellow;
+}
+.nav-link:active{
+  background-color: purple;
+}
+.nav-link:hover{
+  background-color: lightgreen;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -39,3 +39,20 @@ li {
   padding: 10px;
   text-decoration: none;
 }
+.btn:hover{
+  background-color: aqua !important;
+  color: cyan !important;
+  
+}
+
+a #controlled-tab-tab-answered{
+  flex:0.5;
+  width: 50%;
+}
+a #controlled-tab-tab-unanswered{
+  flex:0.5;
+  width: 50%;
+}
+.nav-link{
+  width:50%;
+}

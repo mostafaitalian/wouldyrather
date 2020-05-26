@@ -30,8 +30,10 @@ class NewQuestion extends Component{
         const {authUser} = this.props.state
         console.log('new question function inputs', partOne, partTwo, authUser)
         return(
-            <Container>
+            <Container fluid style={{margin:'1px',padding:'1px',width:"100%"}}>
+             <Nav authUser={this.props.state.authUser} users={this.props.state.users} />
             <LoadingBar/>
+            
                 <Row>
                     <Col></Col>
                     <Col lg={8} md={8} sm={10} xs={12}>

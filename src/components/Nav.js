@@ -57,7 +57,7 @@ function Nav(props) {
 
         </ul>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <h4>Welcome {props.authUser===undefined?props.users[props.authUser].name:'player'}</h4><span><img src={props.authUser===undefined?props.users[props.authUser].avatarURL:null} style={{ borderRadius: '50%', width: '40px', marginLeft: '5px', marginRight: '5px' }} /></span></div>
+          <h4>Welcome {Object.keys(props.authUser).length!==0?props.users[props.authUser].name:'player'}</h4><span><img src={Object.keys(props.authUser).length!==0?props.users[props.authUser].avatarURL:null} style={{ borderRadius: '50%', width: '40px', marginLeft: '5px', marginRight: '5px' }} /></span></div>
         <form className="form-inline my-2 my-lg-0">
           <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

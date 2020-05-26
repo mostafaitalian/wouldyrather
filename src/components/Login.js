@@ -68,6 +68,8 @@ class Login extends Component {
 
 
             <div style={{ width: '100%', height: '1000px', backgroundColor: 'lightgray' }}>
+                 <Nav authUser={this.props.authUser} users={this.props.users} />
+
                 <div style={{ display: 'flex', justifyContent: 'center', background: '#EEFF86', border: '5px solid blue', borderRadius: '5px' }}>
                     <h3>Would You Rather ...?</h3></div>
                 <br />
