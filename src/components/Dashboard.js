@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAuthUser } from '../actions/authUser'
 import Nav from './Nav'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Route, Redirect } from 'react-router-dom'
-//import {} from '../actions/authUser'
-import LeaderBoard from './LeaderBoard'
 import QuestionList from './QuestionList'
 import '../index.css'
+
 class Dashboard extends Component {
     state = { login: '' }
     isLogedIn = () => {
@@ -45,15 +42,16 @@ class Dashboard extends Component {
                         <Col>
 
                         </Col>
-                        <Col lg={8} md={8} sm={10} xs={10}>
-                            Dashboard
-                         </Col>
+                        <Col lg={10} md={10} sm={10} xs={10}>
+                            <QuestionList />
+                        </Col>
                         <Col>
 
                         </Col>
                     </Row>
                     <div>
-                        <QuestionList/>
+
+                        {/* <QuestionDetail/> */}
                     </div>
                 </Container>
 
@@ -71,11 +69,5 @@ function getOtherQuestions(questions, authUser) {
     }
     return result
 }
-function mapStateToProps(state) {
-    return {
-        authUser: state.authUser,
-        users: state.users,
-        questions: state.questions
-    }
-}
+
 export default connect(state => { return { state: state } })(Dashboard)

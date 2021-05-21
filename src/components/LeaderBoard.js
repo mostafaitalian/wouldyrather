@@ -3,14 +3,26 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import User from './user'
 import { Link } from 'react-router-dom'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import Nav from './Nav'
 class LeaderBoard extends Component {
     render() {
+        const { users } = this.props
+        const userIds = Object.keys(users)
+        let userArray = []
+        for (const uId of userIds) {
+            userArray.push(users[uId])
+        }
+        let Arranged = userArray.sort((a, b) => {
+            const lb = Object.keys(b.answers).length
+            const la = Object.keys(a.answers).length
+            const qb = b.questions.length
+            const qa = a.questions.length
+            return (lb + qb) - (la + qa)
+        })
         console.log('users keys', Object.keys(this.props.users))
         return (
             <div style={{ width: '100%' }}>
-                 <Nav authUser={this.props.authUser} users={this.props.users} />
+                <Nav authUser={this.props.authUser} users={this.props.users} />
 
                 <Container fluid style={{ margin: '0px', padding: '0px' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', background: '#EEFF86', border: '5px solid blue', borderRadius: '5px', width: '100%' }}>
@@ -22,10 +34,11 @@ class LeaderBoard extends Component {
 
                         </Col>
                         <Col lg={8} md={8} sm={10} xs={10}>
-                            {(Object.keys(this.props.users)).map(uid => {
+                            {/* (Object.keys(this.props.users)) */}
+                            {Arranged.map(uid => {
                                 console.log('uid', uid)
 
-                                return <User key={uid} id={uid} />
+                                return <User key={uid.id} id={uid.id} />
                             })}
                         </Col>
                         <Col>

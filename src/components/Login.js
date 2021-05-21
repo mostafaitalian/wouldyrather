@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addAuthUser } from '../actions/authUser'
-import { Redirect } from 'react-router-dom'
-import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap/'
+//import { Redirect } from 'react-router-dom'
+import { Row, Col, Image, Form, Button } from 'react-bootstrap/'
 import '../App.css'
 import Nav from './Nav'
-
+import { Link } from 'react-router-dom'
+//import Register from './Register'
+import Progress from './Progress'
 class Login extends Component {
 
     state = {
@@ -14,42 +16,19 @@ class Login extends Component {
 
     handleOnChange = (e) => {
         e.preventDefault()
-        //document.querySelector('#img').remove()
-        //console.log(e.target.value)
+   
         this.setState({ username: e.target.value })
-        document.querySelector('#dd').innerHTML = ''
-        const x = document.querySelector('select')
-        const s = document.createElement('span')
-        const i = document.createElement('img')
-        i.id = 'img'
 
-        const xx = this.props.users[e.target.value].avatarURL
-        const xxxx = require('../images/avatar1.jpg')
-        const d = document.querySelector('#dd')
-        const dd = document.createElement('div')
-        d.appendChild(dd)
-        i.src = this.props.users[e.target.value].avatarURL
-        i.style = 'width:10%'
-        i.style = 'height:auto'
-        i.style = 'border-radius:50%'
-
-        dd.appendChild(i)
-        d.append(`you are successfully ${this.props.users[e.target.value].name}`)
-        //d.innerHTML=''
-        //const xxx = `background-img: url(${xx})`
-        console.log('xxxxx', xx)
-        //x.style= xxx
-        //x.style='background-repeat: no-repeat'
-        //console.log(this.state.username)
     }
     handleOnSubmit = (e) => {
         e.preventDefault()
         this.props.dispatch(addAuthUser(this.state.username))
-        //this.props.dispatch(addAuthUser(this.state.username))
-        this.props.history.push('/')
-        // if(this.props.authUser!==undefined){
-        // return <Redirect to='/'/>}
-        // //this.props.history.replace('/')
+
+
+        const { from } = this.props.history.location.state || { from: { pathname: '/' } }
+
+        console.log('from', this.props)
+        this.props.history.push(from.pathname)
     }
     render() {
         const s = require('../images/avatar8.jpg')
@@ -67,24 +46,31 @@ class Login extends Component {
         return (
 
 
-            <div style={{ width: '100%', height: '1000px', backgroundColor: 'lightgray' }}>
-                 <Nav authUser={this.props.authUser} users={this.props.users} />
+            <div style={{ width: '100%', height: '1000px' }}>
+                <Nav authUser={this.props.authUser} users={this.props.users} />
 
                 <div style={{ display: 'flex', justifyContent: 'center', background: '#EEFF86', border: '5px solid blue', borderRadius: '5px' }}>
                     <h3>Would You Rather ...?</h3></div>
                 <br />
-                <div style={{ display: 'flex', justifyContent: 'center', justifyItems: 'stretch', alignItems: 'center' }}>
-                    <Image src={require('../images/1.jpg')} roundedCircle style={{ width: '400px', height: '300px' }} />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Image src={require('../images/1.jpg')} className='login-img' style={{ width: '300px', height: '300px', borderRadius: '50%' }} />
 
 
 
 
                 </div>
+                <Row>
+                    <Link to='/register' className='register-link'>Register from here and create a new user</Link>
+
+                </Row>
                 <br />
                 <Row>
-                    <Col></Col>
+                    <Col>
+
+
+                    </Col>
                     <Col xs={10} sm={10} md={6}>
-                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', border: '1px solid black', height: '300px' }}>
+                        <div className='questionbox' style={{ backgroundColor: 'white', display: 'flex', justifyContent: 'center', flexDirection: 'column', border: '1px transparent black', height: '300px', borderRadius: '10px' }}>
                             <Form onSubmit={this.handleOnSubmit} style={{ width: '90%', marginLeft: '10px', textAlign: 'center' }}>
                                 <Form.Group controlId='exampleForm'>
                                     <center><Form.Label style={{ fontSize: '24px' }}><b>Choose Your Account</b></Form.Label></center>
@@ -110,15 +96,18 @@ class Login extends Component {
                                     <center><Button type='submit' variant='success'>submit</Button></center>
                                 </Form.Group>
                             </Form>
-                            <div style={{ textAlign: 'center' }}>
-                                <div id='dd' style={{ display: 'inline-block' }}></div>
+                            <div style={{ textAlign: 'center', backgroundColor: 'rgba(18,18,18,0.1)', display: 'flex', flexDirection: 'row', verticalAlign: 'middle', justifyContent: 'center' }} hidden={this.state.username.length === 0}>
+                                <p style={{ fontFamily: 'Palatino' }}>Welcome..</p>
+                                <div id='dd' style={{ display: 'inline-block', textAlign: 'center' }}>
+                                    <img src={this.state.username.length > 0 ? this.props.users[this.state.username].avatarURL : ''} alt='login user' style={{ borderRadius: '50%' }} />
+                                </div>
+                                <p style={{ fontFamily: 'Palatino' }}>{this.state.username.length > 0 ? this.props.users[this.state.username].name : 'player'}</p>
+
                             </div>
                         </div>
-
                     </Col>
                     <Col></Col>
                 </Row>
-
             </div>
 
         )

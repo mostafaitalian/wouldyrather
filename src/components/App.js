@@ -1,57 +1,75 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import '../App.css'
-import {handleInitialData} from '../actions/shared'
-import {connect} from 'react-redux'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import { handleInitialData } from '../actions/shared'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import Login from './Login'
 import Dashboard from './Dashboard'
-import { getAuthUser } from '../actions/authUser'
 import LeaderBoard from './LeaderBoard'
 import NewQuestion from './NewQuestion'
-import Nav from './Nav'
+import QuestionDetail from './QuestionDetail'
+import Register from './Register'
+import Error404 from './Error404'
+import Undifined from './Undifined'
+
 class App extends Component {
-  state={login:''}
-  componentDidMount(){
+  state = { isAuthenticated: false }
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
-    //this.setState({login:this.props.dispatch(getAuthUser())})
+    const { authUser } = this.props.state
+    console.log('authUseeeeeeeeeeeeeeee', authUser)
   }
-  isLogedIn = ()=>{
-    const {authUser} = this.props.state
-    if(authUser===undefined || authUser==="" || Object.keys(authUser).length===0){
-      console.log('case undefined', authUser)  
+  handleIsAuthenticated = (authUserr) => {
+    this.setState({ isAuthenticated: authUserr === undefined || authUserr === "" || Object.keys(authUserr).length === 0 ? false : true })
+
+  }
+  isLogedIn = () => {
+    const { authUser } = this.props.state
+    if (authUser === undefined || authUser === "" || Object.keys(authUser).length === 0) {
+
       return false
 
     }
-    else{
-      console.log('case else', authUser)  
+    else {
 
-        return true
+      return true
     }
 
-}
-  render(){
-    //console.log('login state in app', this.state.login, this.props.dispatch(getAuthUser()))
+  }
+  render() {
 
-  return (
-    <div>
-    <Router>
-    {/* <Route path='/' exact component={Dashboard}/> */}
-      <Route path='/' exact render={()=>(
-        this.isLogedIn()?<Dashboard/>:<Redirect to='/login'/>
-      )}/>
-      <Route path='/leaderboard' render={()=>(this.isLogedIn()?
+    return (
+      <div>
+        <Router>
+          <ProtectedRoute path='/' exact cd={this.isLogedIn} component={Dashboard} />
+          <Route path='/register' exact render={({ history }) => (this.isLogedIn() ?
 
 
-<LeaderBoard/>:<Redirect to='/login'/>)}/>
-<Route path='/newquestion' render={({history})=>(this.isLogedIn()?
+            <Register history={history} /> : <Register history={history} />)} />
+          <ProtectedRoute path='/newquestion' exact component={NewQuestion} cd={this.isLogedIn} />
+
+          <ProtectedRoute path='/leaderboard' exact component={LeaderBoard} cd={this.isLogedIn} />
+
+          <Switch>
+            <ProtectedRoute path='/question/:id' component={QuestionDetail} cd={this.isLogedIn} />
+            <ProtectedRoute path='/notfound' component={Undifined} cd={this.isLogedIn} />
+          </Switch>
 
 
-<NewQuestion history={history}/>:<Redirect to='/login'/>)}/>
-      <Route path='/login' component={Login}/>
-    </Router>
-  </div>    
-  );
+          <Route path='/login' render={({ history }) => <Login history={history} />} />
+
+        </Router>
+      </div>
+    );
   }
 }
 
-export default connect(state=>{return{state:state}})(App);
+const ProtectedRoute = ({ component: Component, cd: Cd, ...rest }) => (
+  <Route {...rest}
+    render={(props, match) => Cd() ?
+      <Component {...props} {...match} /> :
+      <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
+  />)
+
+
+export default connect(state => { return { state: state } })(App);

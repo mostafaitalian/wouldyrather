@@ -17,8 +17,9 @@ class NewQuestion extends Component{
         const question = {optionOneText:partOne, optionTwoText:partTwo, author:authUser}
         this.props.dispatch(handleSaveQuestion(question))
         this.setState({partOne:'', partTwo:''})
-        this.inputOne.value=''
-        this.inputTwo.value=''
+        //this.inputOne.value=''
+        //this.inputTwo.value=''
+        
         this.props.history.push('/')
      
 
@@ -45,10 +46,10 @@ class NewQuestion extends Component{
             </Card.Header>
             <Card.Body>
                 <Card.Title>would you rather...?</Card.Title>
-                <Form.Control ref={(input)=>this.inputOne=input} type='text' placeholder='option one' onChange={(e)=>this.setState({partOne:e.target.value})}/>
+                <Form.Control ref={(input)=>this.inputOne=input} value={this.state.partOne} type='text' placeholder='option one' onChange={(e)=>this.setState({partOne:e.target.value})}/>
                 <br/>
                 <Card.Text>OR</Card.Text>
-                <Form.Control ref={(input)=>this.inputTwo=input} type='text' placeholder='option two' onChange={(e)=>this.setState({partTwo:e.target.value})}/>
+                <Form.Control ref={(input)=>this.inputTwo=input} value={this.state.partTwo} type='text' placeholder='option two' onChange={(e)=>this.setState({partTwo:e.target.value})}/>
                 <br/>
                 <Button variant='warning' style={{backgroundColor:'#EEFF86', width:'100%'}} disabled={this.state.partOne===''||this.state.partTwo===''} onClick={(e)=>{
                     

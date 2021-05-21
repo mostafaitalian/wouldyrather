@@ -125,6 +125,32 @@ export function _getUsers () {
   })
 }
 
+export function formatUser({name, avatar}){
+  const x = name.split(' ').join('')
+  //let avatarr = require(avatar)  
+  console.log('avatarrrr', avatar)
+  return{
+    id: x,
+    name: name,
+    avatarURL: `${avatar}`,
+    answers: {},
+    questions: [],
+  }
+}
+export function _saveUser(user){
+  return new Promise((res,rej)=>{
+    const {name, avatar} = user
+    const formattedUser = formatUser(user)
+    console.log('formattedUser', formattedUser)
+    setTimeout(()=>{
+      users = {...users, [formattedUser.id]: {...formattedUser}}
+      res(formattedUser)
+    },1000)
+  })
+
+
+}
+
 export function _getQuestions () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...questions}), 1000)

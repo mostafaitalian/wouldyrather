@@ -1,3 +1,23 @@
+would you rather
+version[1.0.0]
+packages:
+react
+react-dom
+react-router-dom
+react-redux
+react-redux-loading
+redux-thunk
+redux
+react-bootstrap
+bootstrap
+react-icons
+
+i add the ability to rigester a new user
+to run the game
+npm install
+npm start
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
