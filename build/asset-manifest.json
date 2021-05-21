@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/wouldyourather/static/css/main.a60bb65d.chunk.css",
+    "main.js": "/wouldyourather/static/js/main.7cc02306.chunk.js",
+    "main.js.map": "/wouldyourather/static/js/main.7cc02306.chunk.js.map",
+    "runtime-main.js": "/wouldyourather/static/js/runtime-main.170d8c5a.js",
+    "runtime-main.js.map": "/wouldyourather/static/js/runtime-main.170d8c5a.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/wouldyourather/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.e823ac98.chunk.js": "/wouldyourather/static/js/2.e823ac98.chunk.js",
+    "static/js/2.e823ac98.chunk.js.map": "/wouldyourather/static/js/2.e823ac98.chunk.js.map",
+    "index.html": "/wouldyourather/index.html",
+    "precache-manifest.53b93851871ee1ef2b4cf0ac55b672f5.js": "/wouldyourather/precache-manifest.53b93851871ee1ef2b4cf0ac55b672f5.js",
+    "service-worker.js": "/wouldyourather/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/wouldyourather/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.a60bb65d.chunk.css.map": "/wouldyourather/static/css/main.a60bb65d.chunk.css.map",
+    "static/js/2.e823ac98.chunk.js.LICENSE.txt": "/wouldyourather/static/js/2.e823ac98.chunk.js.LICENSE.txt",
+    "static/media/1.jpg": "/wouldyourather/static/media/1.651457ed.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.170d8c5a.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.e823ac98.chunk.js",
+    "static/css/main.a60bb65d.chunk.css",
+    "static/js/main.7cc02306.chunk.js"
+  ]
+}
