@@ -1,5 +1,5 @@
 {
-    "homepage": "http://mostafaitalian.github.io/wouldyourather",
+    "name": "wouldyourather",
     "version": "0.1.0",
     "engines": {
       "npm": "6.14.12",
